@@ -7,7 +7,7 @@ public class MasterMind {
 		Game game = new Game();
 		game.setRandomCode();
 		game.getInput();
-		
+		game.checkInput();
 	}
 }
 
@@ -42,5 +42,14 @@ class Game {
         } 
 	}
 	
+	public void checkInput() {
+		int correctCount = 0;
+		for (int i = 0; i < 4; i++) {
+			if(theCode[i] == guessedCode[i]) {
+				System.out.println("correct");
+			}
+		}
+		
+	}
 	
 }
