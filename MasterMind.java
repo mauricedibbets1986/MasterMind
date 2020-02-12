@@ -17,10 +17,10 @@ public class MasterMind {
 		}
 		
 		if (game.getGuessCount() >= game.getMaxGuesses()) {
-			System.out.println("Je hebt je maximaal aantal beurten gehad!");
+			System.out.println("\n\nJe hebt je maximaal aantal beurten gehad!");
 			game.printRandomCode();
 		} else if (game.getGuessedCorrect()) {
-			System.out.println("Geweldig!");
+			System.out.println("\nGeweldig!");
 		} else {
 		game.printRandomCode();
 		}
@@ -31,7 +31,7 @@ public class MasterMind {
 class Game {
 	private char[] theCode = new char[4];
 	private char[] guessedCode = new char[4];
-	private int MAX_GUESSES = 3;
+	private int MAX_GUESSES = 25;
 	private int guessCount = 0;
 	private int correctCount = 0;
 	private boolean guessedCorrect = false;
