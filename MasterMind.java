@@ -91,38 +91,7 @@ class Game {
 			}
 			
 		}
-
-		
-		
-		/*
-		char inputSpeler = 0;
-		while (!(inputSpeler == 'g') && !(inputSpeler == 's')) {
-			System.out.print("Gokje wagen (g) of stoppen (s)?   ");
-			inputSpeler = sc.next().charAt(0);
-		}
-		if (inputSpeler == 'g') {
-			System.out.println("\nGok de reeks");
-			String input = sc.next();
-			for (int i = 0; i < theCode.length; i++) {
-				try {
-					guessedCode[i] = input.charAt(i); 
-				}
-				catch (Exception e) {
-					
-				}
-	        } 
-			if (theCode.length > guessedCode.length) {
-				System.out.println("Probeer de volgende keer een reeks van 4 karakters in te voeren");
-			}
-		} else if (inputSpeler == 's') {
-			gameRunning = false;
-			System.out.print("YOUR A QUITTER");
-		} else {
-			System.out.print("Geen juiste input");
-		}
-		guessCount++;	
-		*/
-	
+		guessCount++;			
 	}
 	
 	public void checkInput() {
