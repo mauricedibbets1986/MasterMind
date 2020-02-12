@@ -6,48 +6,115 @@ public class MasterMind {
 	public static void main(String[] args) {
 		Game game = new Game();
 		game.setRandomCode();
-		game.getInput();
-		game.checkInput();
+		
+		while (game.getMaxGuesses() > game.getGuessCount() && !game.getGuessedCorrect() && game.getGameRunning()) {
+			game.getInput();
+			if (game.getGameRunning()) {
+				game.checkInput();
+			}
+		}
+		
+		if (game.getGuessCount() >= game.getMaxGuesses()) {
+			System.out.println("Je hebt je maximaal aantal beurten gehad!");
+			game.printRandomCode();
+		} else if (game.getGuessedCorrect()) {
+			System.out.println("Geweldig!");
+		} else {
+		game.printRandomCode();
+		}
+		
 	}
 }
 
 class Game {
 	private char[] theCode = new char[4];
 	private char[] guessedCode = new char[4];
-	private int guessCount;
+	private int MAX_GUESSES = 3;
+	private int guessCount = 0;
+	private int correctCount = 0;
+	private boolean guessedCorrect = false;
+	private boolean gameRunning = true;
+	
+	
+	public int getMaxGuesses() {
+		return MAX_GUESSES;
+	}
+	
+	public int getGuessCount() {
+		return guessCount;
+	}
+	
+	public boolean getGuessedCorrect() {
+		return guessedCorrect;
+	}
+	
+	public boolean getGameRunning() {
+		return gameRunning;
+	}
 	
 	public void setRandomCode() {
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < theCode.length; i++) {
 			Random r = new Random();
 			char c = (char)(r.nextInt(26) + 'a');
 			theCode[i] = c;
-			System.out.print(theCode[i]);
-			System.out.println("");
 		}
 	}
 	
-	public char[] getRandomCode() {
-		return theCode;
+	public void printRandomCode() {
+		System.out.println("\n\nThe code was: ");
+		for (char character : theCode) {
+			System.out.print(character);
+		}
 	}
 	
 	public void getInput() {
 		Scanner sc =  new Scanner(System.in);
-		System.out.println("Gok de reeks");
-		String input = sc.next();
-		System.out.println(input);
-		for (int i = 0; i < 4; i++) { 
-			guessedCode[i] = input.charAt(i); 
-			System.out.print(guessedCode[i]);
-			System.out.println("");
-        } 
+		char inputSpeler = 0;
+		while (!(inputSpeler == 'g') && !(inputSpeler == 's')) {
+			System.out.print("Gokje wagen (g) of stoppen (s)?   ");
+			inputSpeler = sc.next().charAt(0);
+		}
+		if (inputSpeler == 'g') {
+			System.out.println("\nGok de reeks");
+			String input = sc.next();
+			for (int i = 0; i < theCode.length; i++) {
+				try {
+					guessedCode[i] = input.charAt(i); 
+				}
+				catch (Exception e) {
+					
+				}
+	        } 
+			if (theCode.length > guessedCode.length) {
+				System.out.println("Probeer de volgende keer een reeks van 4 karakters in te voeren");
+			}
+		} else if (inputSpeler == 's') {
+			gameRunning = false;
+			System.out.print("YOUR A QUITTER");
+		} else {
+			System.out.print("Geen juiste input");
+		}
+		guessCount++;	
+	
 	}
 	
 	public void checkInput() {
-		int correctCount = 0;
-		for (int i = 0; i < 4; i++) {
+		correctCount = 0;
+		for (int i = 0; i < theCode.length; i++) {
 			if(theCode[i] == guessedCode[i]) {
-				System.out.println("correct");
+				correctCount++;
 			}
+		}
+		if (correctCount == (theCode.length - 1)) {
+			System.out.println("Aantal goed gegokt: " + correctCount + "Je bent er bijna!");
+			System.out.println("Slechts " + (theCode.length - correctCount) + " nodig om te winnen");
+		} else if (correctCount == theCode.length){
+			System.out.println("Aantal goed gegokt: " + correctCount);
+			System.out.println("JE HEBT GEWONNEN!");
+			guessedCorrect = true;
+		} else {
+			System.out.println("Aantal goed gegokt: " + correctCount);
+			System.out.println("Je hebt nog " + (theCode.length - correctCount) + " nodig om te winnen");
 		}
 		
 	}
