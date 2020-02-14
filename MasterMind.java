@@ -37,7 +37,6 @@ class Game {
 	private boolean guessedCorrect = false;
 	private boolean gameRunning = true;
 	
-	
 	public int getMaxGuesses() {
 		return MAX_GUESSES;
 	}
@@ -86,12 +85,12 @@ class Game {
 					
 				}
 	        } 
-			if (theCode.length > guessedCode.length) {
+			if (input.length()  > theCode.length || input.length()  < theCode.length ) {
 				System.out.println("Probeer de volgende keer een reeks van 4 karakters in te voeren");
 			}
-			
+			guessCount++;	
 		}
-		guessCount++;			
+	
 	}
 	
 	public void checkInput() {
