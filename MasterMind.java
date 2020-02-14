@@ -31,7 +31,7 @@ public class MasterMind {
 class Game {
 	private char[] theCode = new char[4];
 	private char[] guessedCode = new char[4];
-	private int MAX_GUESSES = 25;
+	private int MAX_GUESSES = 10;
 	private int guessCount = 0;
 	private int correctCount = 0;
 	private boolean guessedCorrect = false;
@@ -57,7 +57,7 @@ class Game {
 	public void setRandomCode() {
 		for (int i = 0; i < theCode.length; i++) {
 			Random r = new Random();
-			char c = (char)(r.nextInt(26) + 'a');
+			char c = (char)(r.nextInt(6) + 'a');
 			theCode[i] = c;
 		}
 	}
@@ -119,6 +119,7 @@ class Game {
 		System.out.println("#############################");
 		System.out.println("welkom bij MAsterMind");
 		System.out.println("raad de code van 4 karakters!");
+		System.out.println("reeks bestaat alleen uit a,b,c,d,e,f");
 		System.out.println("typ STOP om te stoppen");
 		System.out.println("#############################");
 		System.out.println("");
